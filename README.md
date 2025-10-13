@@ -63,8 +63,8 @@ While platforms like YouTube and WikiHow provide general repair content, HandyDa
 
 ## 📬 Team
 
-**HandyDandy Team** – Experienced in UX/UI, app development, and digital marketing:
+**HandyDandy Team** – Experienced in UX/UI and app development:
 
-- Miha Plemenitaš – [miha.plemenitas@gmail.com](mailto:miha.plemenitas@gmail.com)
+- Miha Plemenitaš
 - Tjaša Gumilar
 - Katarina Lipovšek
