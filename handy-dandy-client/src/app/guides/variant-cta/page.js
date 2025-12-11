@@ -33,6 +33,7 @@ export default function GuidesPage() {
                 <GuidesSection
                     showNotification={(msg) => console.log(msg)}
                     variant="cta"
+                    formVariant="step"
                 />
             </motion.div>
         </main>

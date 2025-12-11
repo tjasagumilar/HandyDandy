@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import GuideList from "./GuideList";
 import GuideAddNew from "./GuideAddNew";
+import GuideAddNewStepper from "./GuideAddNewStepper";
 
-export default function GuidesSection({ showNotification, variant = "baseline" }) {
+export default function GuidesSection({ showNotification, variant = "baseline", formVariant = "standard" }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [availableCategories, setAvailableCategories] = useState([]);
@@ -83,7 +84,7 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
             }
             title="Dodaj nov vodič"
           >
-            {variant === "cta" ? "Dodaj nov vodič" : "+"}
+            {variant === "cta" ? "Add Guide" : "+"}
           </button>
         </div>
       </div>
@@ -96,11 +97,19 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
       />
 
       {showAddForm && (
-        <GuideAddNew
-          onClose={() => setShowAddForm(false)}
-          onGuideAdded={handleNewGuideAdded}
-          showNotification={showNotification}
-        />
+        formVariant === "step"
+          ? (
+            <GuideAddNewStepper
+              onClose={() => setShowAddForm(false)}
+              showNotification={showNotification}
+            />
+          )
+          : (
+            <GuideAddNew
+              onClose={() => setShowAddForm(false)}
+              showNotification={showNotification}
+            />
+          )
       )}
     </section>
   );
