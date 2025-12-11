@@ -23,7 +23,6 @@ export default function GuidesPage() {
           Browse step-by-step repair guides and learn to fix things like a pro.
         </p>
         <div className="mt-12 text-center">
-          <p className="text-sm text-gray-600 mb-2">Solve SUS</p>
           <a
             href="https://1ka.arnes.si/a/700f206e"
             target="_blank"
