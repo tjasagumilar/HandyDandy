@@ -96,20 +96,6 @@ export default function HomePage() {
           ✨ What You Can Do
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div className="p-4 bg-gray-50 rounded-lg border hover:shadow">
-            <BadgeCheck className="mx-auto text-green-500 w-8 h-8 mb-3" />
-            <h3 className="font-semibold text-lg mb-1">Earn Badges</h3>
-            <p className="text-sm text-gray-600">
-              Complete guides to unlock badges and track your progress.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg border hover:shadow">
-            <Star className="mx-auto text-yellow-500 w-8 h-8 mb-3" />
-            <h3 className="font-semibold text-lg mb-1">Save Favorites</h3>
-            <p className="text-sm text-gray-600">
-              Mark guides you love and revisit them any time.
-            </p>
-          </div>
           <Link
             href="/guides/variant-cta?open=add-guide"
             className="p-4 bg-gray-50 rounded-lg border hover:shadow block"
@@ -122,6 +108,27 @@ export default function HomePage() {
               Quickly create your own repair guides and save them for later.
             </p>
           </Link>
+          <div className="p-4 bg-gray-50 rounded-lg border hover:shadow">
+            <Star className="mx-auto text-yellow-500 w-8 h-8 mb-3" />
+            <h3 className="font-semibold text-lg mb-1">Save Favorites</h3>
+            <p className="text-sm text-gray-600">
+              Mark guides you love and revisit them any time.
+            </p>
+          </div>
+          <Link
+            href="/guides/variant-cta"
+            className="p-4 bg-gray-50 rounded-lg border hover:shadow block"
+          >
+            <span className="mx-auto text-purple-500 w-8 h-8 mb-3 flex items-center justify-center text-2xl">
+              💬
+            </span>
+            <h3 className="font-semibold text-lg mb-1">Comment on guides</h3>
+            <p className="text-sm text-gray-600">
+              Share your thoughts or improvements directly on existing guides.
+            </p>
+          </Link>
+
+
         </div>
       </section>
 
