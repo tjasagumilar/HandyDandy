@@ -82,7 +82,7 @@ export default function GuidesSection({ showNotification, variant = "baseline", 
                 ? "px-6 py-3 bg-green-600 text-white rounded-lg font-semibold shadow hover:bg-green-700 transition"
                 : "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             }
-            title="Dodaj nov vodič"
+            title="Add Guide"
           >
             {variant === "cta" ? "Add Guide" : "+"}
           </button>
