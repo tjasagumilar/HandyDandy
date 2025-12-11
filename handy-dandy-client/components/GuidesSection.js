@@ -5,14 +5,13 @@ import GuideList from "./GuideList";
 import GuideAddNew from "./GuideAddNew";
 
 export default function GuidesSection({ showNotification, variant = "baseline" }) {
-  const searchParams = useSearchParams();
-  const openFromCTA = searchParams.get("open") === "add-guide";
-  const [showAddForm, setShowAddForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [availableCategories, setAvailableCategories] = useState([]);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [guides, setGuides] = useState([]);
 
-  //preberemo query param iz URL-ja na clientu
+  // Preberi query param iz URL-ja na clientu (npr. ?open=add-guide)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -21,8 +20,6 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
       }
     }
   }, []);
-
-  const [guides, setGuides] = useState([]);
 
   const fetchGuides = async () => {
     try {
@@ -42,12 +39,6 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
   useEffect(() => {
     fetchGuides();
   }, []);
-
-  // Če se query v URL-ju spremeni (npr. user ročno odstrani ?open=...),
-  // posodobimo showAddForm
-  useEffect(() => {
-    setShowAddForm(openFromCTA);
-  }, [openFromCTA]);
 
   const handleNewGuideAdded = (newGuide) => {
     setGuides((prev) => [newGuide, ...prev]);
@@ -83,7 +74,6 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
             ))}
           </select>
 
-          {/* Gumb je ostal isti – le variant logiko imaš že dodano */}
           <button
             onClick={() => setShowAddForm(true)}
             className={
