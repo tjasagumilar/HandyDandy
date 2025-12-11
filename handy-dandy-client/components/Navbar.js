@@ -9,22 +9,43 @@ export default function Navbar() {
   const pathname = usePathname();
   const isAdmin = session?.user?.email === "miha.plemenitas@gmail.com";
 
+  // Ugotovimo ali smo v CTA varianti (B varianta)
+  const isCTA =
+    pathname?.startsWith("/home-variant") ||
+    pathname?.startsWith("/guides/variant-cta");
+
+  // Dinamičen href za vodiče
+  const guidesHref = isCTA ? "/guides/variant-cta" : "/guides";
+
   const isActive = (path) => pathname === path;
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-zinc-900 shadow-lg">
+
       {/* Clickable logo */}
       <Link
-        href="/"
+        href={isCTA ? "/home-variant" : "/"}
         className="text-white font-bold text-xl hover:text-blue-300"
       >
         🔧 HandyDandy
       </Link>
 
       <div className="flex items-center space-x-4">
-        <NavLink href="/" label="Home" isActive={isActive("/")} />
-        <NavLink href="/guides" label="Guides" isActive={isActive("/guides")} />
+
+        <NavLink
+          href={isCTA ? "/home-variant" : "/"}
+          label="Home"
+          isActive={isActive(isCTA ? "/home-variant" : "/")}
+        />
+
+        <NavLink
+          href={guidesHref}
+          label="Guides"
+          isActive={isActive(guidesHref)}
+        />
+
         <NavLink href="/tools" label="Tools" isActive={isActive("/tools")} />
+
         {session?.user && (
           <NavLink
             href="/profile"
@@ -32,9 +53,11 @@ export default function Navbar() {
             isActive={isActive("/profile")}
           />
         )}
+
         {isAdmin && (
           <NavLink href="/admin" label="Admin" isActive={isActive("/admin")} />
         )}
+
         {session ? (
           <button
             onClick={() => signOut()}

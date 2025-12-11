@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import GuideList from "./GuideList";
 import GuideAddNew from "./GuideAddNew";
 
-export default function GuidesSection({ showNotification }) {
+export default function GuidesSection({ showNotification, variant = "baseline" }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [availableCategories, setAvailableCategories] = useState([]);
@@ -64,10 +64,14 @@ export default function GuidesSection({ showNotification }) {
 
           <button
             onClick={() => setShowAddForm(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className={
+              variant === "cta"
+                ? "px-6 py-3 bg-green-600 text-white rounded-lg font-semibold shadow hover:bg-green-700 transition"
+                : "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            }
             title="Dodaj nov vodič"
           >
-            +
+            {variant === "cta" ? "Add guide" : "+"}
           </button>
         </div>
       </div>
@@ -81,11 +85,11 @@ export default function GuidesSection({ showNotification }) {
 
       {showAddForm && (
         <GuideAddNew
-        onClose={() => setShowAddForm(false)}
-        onGuideAdded={handleNewGuideAdded}
-        showNotification={showNotification}
-      />
-      
+          onClose={() => setShowAddForm(false)}
+          onGuideAdded={handleNewGuideAdded}
+          showNotification={showNotification}
+        />
+
       )}
     </section>
   );
