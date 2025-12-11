@@ -1,20 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation"; // ⬅️ NOVO
 import GuideList from "./GuideList";
 import GuideAddNew from "./GuideAddNew";
 
 export default function GuidesSection({ showNotification, variant = "baseline" }) {
   const searchParams = useSearchParams();
   const openFromCTA = searchParams.get("open") === "add-guide";
-
+  const [showAddForm, setShowAddForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [availableCategories, setAvailableCategories] = useState([]);
 
-  // ⬅️ tukaj je glavna fora: inicialno stanje vzamemo iz URL-ja
-  const [showAddForm, setShowAddForm] = useState(openFromCTA);
+  //preberemo query param iz URL-ja na clientu
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("open") === "add-guide") {
+        setShowAddForm(true);
+      }
+    }
+  }, []);
 
   const [guides, setGuides] = useState([]);
 
