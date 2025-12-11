@@ -1,14 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation"; // ⬅️ NOVO
 import GuideList from "./GuideList";
 import GuideAddNew from "./GuideAddNew";
 
 export default function GuidesSection({ showNotification, variant = "baseline" }) {
+  const searchParams = useSearchParams();
+  const openFromCTA = searchParams.get("open") === "add-guide";
+
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [availableCategories, setAvailableCategories] = useState([]);
-  const [showAddForm, setShowAddForm] = useState(false);
+
+  // ⬅️ tukaj je glavna fora: inicialno stanje vzamemo iz URL-ja
+  const [showAddForm, setShowAddForm] = useState(openFromCTA);
+
   const [guides, setGuides] = useState([]);
 
   const fetchGuides = async () => {
@@ -17,7 +24,9 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
       const data = await res.json();
       setGuides(data);
 
-      const categories = Array.from(new Set(data.map((g) => g.category).filter(Boolean)));
+      const categories = Array.from(
+        new Set(data.map((g) => g.category).filter(Boolean))
+      );
       setAvailableCategories(categories);
     } catch {
       showNotification("Napaka pri pridobivanju vodičev", true);
@@ -28,10 +37,16 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
     fetchGuides();
   }, []);
 
+  // Če se query v URL-ju spremeni (npr. user ročno odstrani ?open=...),
+  // posodobimo showAddForm
+  useEffect(() => {
+    setShowAddForm(openFromCTA);
+  }, [openFromCTA]);
+
   const handleNewGuideAdded = (newGuide) => {
-    setGuides(prev => [newGuide, ...prev]);
+    setGuides((prev) => [newGuide, ...prev]);
     if (newGuide.category && !availableCategories.includes(newGuide.category)) {
-      setAvailableCategories(prev => [...prev, newGuide.category]);
+      setAvailableCategories((prev) => [...prev, newGuide.category]);
     }
   };
 
@@ -62,6 +77,7 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
             ))}
           </select>
 
+          {/* Gumb je ostal isti – le variant logiko imaš že dodano */}
           <button
             onClick={() => setShowAddForm(true)}
             className={
@@ -71,7 +87,7 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
             }
             title="Dodaj nov vodič"
           >
-            {variant === "cta" ? "Add guide" : "+"}
+            {variant === "cta" ? "Dodaj nov vodič" : "+"}
           </button>
         </div>
       </div>
@@ -89,7 +105,6 @@ export default function GuidesSection({ showNotification, variant = "baseline" }
           onGuideAdded={handleNewGuideAdded}
           showNotification={showNotification}
         />
-
       )}
     </section>
   );

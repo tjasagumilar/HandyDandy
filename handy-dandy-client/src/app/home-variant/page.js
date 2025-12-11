@@ -41,7 +41,7 @@ export default function HomePage() {
       >
         {[
           {
-            href:"/guides/variant-cta",
+            href: "/guides/variant-cta",
             title: "Guides",
             desc: "Browse step-by-step repair guides and learn to fix things like a pro.",
             icon: BookOpen,
@@ -110,13 +110,18 @@ export default function HomePage() {
               Mark guides you love and revisit them any time.
             </p>
           </div>
-          <div className="p-4 bg-gray-50 rounded-lg border hover:shadow">
-            <Wrench className="mx-auto text-blue-500 w-8 h-8 mb-3" />
-            <h3 className="font-semibold text-lg mb-1">Use Voice Commands</h3>
+          <Link
+            href="/guides/variant-cta?open=add-guide"
+            className="p-4 bg-gray-50 rounded-lg border hover:shadow block"
+          >
+            <span className="mx-auto text-blue-500 w-8 h-8 mb-3 flex items-center justify-center text-2xl">
+              ✏️
+            </span>
+            <h3 className="font-semibold text-lg mb-1">Add your own guides</h3>
             <p className="text-sm text-gray-600">
-              Navigate the app hands-free using built-in voice control.
+              Quickly create your own repair guides and save them for later.
             </p>
-          </div>
+          </Link>
         </div>
       </section>
 
