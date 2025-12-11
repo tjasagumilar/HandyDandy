@@ -22,16 +22,14 @@ export default function GuidesPage() {
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                     Browse step-by-step repair guides and learn to fix things like a pro.
                 </p>
-                <div className="mt-12 text-center">
-                    <p className="text-sm text-gray-600 mb-2">Solve SUS</p>
-                    <a
-                        href="https://1ka.arnes.si/a/1d9a8237"
-                        target="_blank"
-                        className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                    >
-                        Solve SUS
-                    </a>
-                </div>
+                <a
+                    href="https://1ka.arnes.si/a/1d9a8237"
+                    target="_blank"
+                    className="underline text-blue-600"
+                >
+                    Solve SUS
+                </a>
+
             </motion.div>
 
             <motion.div

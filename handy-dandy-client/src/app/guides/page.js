@@ -27,7 +27,7 @@ export default function GuidesPage() {
           <a
             href="https://1ka.arnes.si/a/700f206e"
             target="_blank"
-            className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="underline text-blue-600"
           >
             Solve SUS
           </a>
